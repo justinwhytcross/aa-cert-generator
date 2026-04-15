@@ -1,0 +1,506 @@
+[
+  {
+    "id": "cou_form",
+    "name": "COU Form",
+    "description": "Completed Application for Certificate of Occupancy Certificate signed by the owner of the development.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "government_levies",
+    "name": "Government Levies",
+    "description": "Receipt showing that the Government Levies have been paid.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "trade_clearances",
+    "name": "Trade Clearances/Inspections",
+    "description": "Confirmation from the trades responsible for plumbing and gas work, ALL electrical work (including mechanical systems) that EPD's Plumbing, Gas and Electrical inspectors have inspected and cleared their work on site.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "survey_certificate",
+    "name": "Survey Certificate",
+    "description": "A Survey Certificate identifying as built boundary setbacks and finished floor levels (FFL) for ALL levels of the building.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "fire_brigade_clearance",
+    "name": "Fire Brigade Clearance",
+    "description": "A clearance from the ACT Fire and Rescue (ACT Fire Brigade).",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_engineers_clearance",
+    "name": "Fire Engineers Clearance",
+    "description": "A clearance from the Fire Engineer stating that the building has been constructed in accordance with the approved Performance Solution Report.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "developers_consent",
+    "name": "Developers Consent",
+    "description": "A letter from the developer stating that the conditions of the Alternative Solution will be maintained throughout the life of the building.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "lift_certificate",
+    "name": "Lift Certificate",
+    "description": "A clearance from ACT Workcover for lifts or self 'safe to operate' certification from lift installer.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Services"
+  },
+  {
+    "id": "structural_engineers_clearance",
+    "name": "Structural Engineers Clearance",
+    "description": "The building as constructed complies with Section B of the NCC and all relevant Australian Standards. That all structural elements required to have a fire rating comply with the FRL's listed in the NCC for the relevant class of building.",
+    "ncc_clauses": ["Section B"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Structure"
+  },
+  {
+    "id": "truss_and_bracing",
+    "name": "Truss and Bracing",
+    "description": "Certification from the truss and wall frame manufacturers that the trusses, walls and bracing comply with Section B of the NCC.",
+    "ncc_clauses": ["Section B"],
+    "standards": [],
+    "report_types": [],
+    "category": "Structure"
+  },
+  {
+    "id": "truss_and_bracing_installation",
+    "name": "Truss and Bracing Installation",
+    "description": "Certification from the truss and framing carpenters stating that the trusses, walls and bracing have been installed in accordance with the truss manufacturers documentation and AS4440 - 2004.",
+    "ncc_clauses": [],
+    "standards": ["AS 4440 - 2004"],
+    "report_types": [],
+    "category": "Structure"
+  },
+  {
+    "id": "fire_hydrants",
+    "name": "Fire Hydrants",
+    "description": "Certification that the Fire Hydrants comply with Clause E1D2 of the NCC and the approved Performance Solution Report, and that they are installed in accordance with AS 2419.1 - 2021.",
+    "ncc_clauses": ["E1D2"],
+    "standards": ["AS 2419.1 - 2021"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_hose_reels",
+    "name": "Fire Hose Reels",
+    "description": "Certification that the Fire Hose Reels comply with Clause E1D3 of the NCC and the approved Performance Solution Report, and that they are installed in accordance with AS 2441 - 2005.",
+    "ncc_clauses": ["E1D3"],
+    "standards": ["AS 2441 - 2005"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "sprinklers",
+    "name": "Sprinklers",
+    "description": "Certification that the Sprinkler System complies with Clause E1D4 of the NCC and AS 2118.1 - 2017 and the approved Performance Solution Report.",
+    "ncc_clauses": ["E1D4"],
+    "standards": ["AS 2118.1 - 2017"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "sprinklers_independent",
+    "name": "Sprinklers Independent Certificate",
+    "description": "Independent certification of the sprinkler system is required from a suitably qualified professional.",
+    "ncc_clauses": ["E1D4"],
+    "standards": ["AS 2118.1 - 2017"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "extinguishers",
+    "name": "Extinguishers",
+    "description": "Certification that the Portable Fire Extinguishers are provided in accordance with Clause E1D14 of the NCC and the approved Performance Solution Report, and that have been selected, located and distributed in accordance with AS 2444 - 2001.",
+    "ncc_clauses": ["E1D14"],
+    "standards": ["AS 2444 - 2001"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "smoke_detection",
+    "name": "Smoke Detection",
+    "description": "Certification that the smoke detection and alarm system complies with Clause E2D3 and Specification 20 of the NCC and AS 1670.1 - 2018 and the approved Performance Solution Report.",
+    "ncc_clauses": ["E2D3", "Specification 20"],
+    "standards": ["AS 1670.1 - 2018"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "emergency_lights",
+    "name": "Emergency Lights",
+    "description": "Certification that the Emergency Lighting System complies with Clauses E4D2 & E4D4 (and E4D3 if applicable) of the NCC and is installed in accordance with AS/NZS 2293.1 - 2018 and the approved Performance Solution Report.",
+    "ncc_clauses": ["E4D2", "E4D3", "E4D4"],
+    "standards": ["AS/NZS 2293.1 - 2018"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "sound_system_intercom",
+    "name": "Sound System and Intercom",
+    "description": "Certification that the Sound System and Intercom System for Emergency Purposes complies with Clause E4D9 (and Specification 20 if applicable) of the NCC, AS 1670.4 - 2018 and the approved Performance Solution Report.",
+    "ncc_clauses": ["E4D9", "Specification 20"],
+    "standards": ["AS 1670.4 - 2018"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "bows",
+    "name": "Building Occupant Warning System",
+    "description": "Certification that the Building Occupant Warning System complies with Specification 20 of the NCC, AS 1670.1 - 2018 and the approved Performance Solution Report.",
+    "ncc_clauses": ["Specification 20"],
+    "standards": ["AS 1670.1 - 2018"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "exit_signs",
+    "name": "Exit Signs",
+    "description": "Certification that Exit Signs comply with Clauses E4D5, E4D6 & E4D8 of the NCC and are installed in accordance with AS/NZS 2293.1 - 2018 and the approved Performance Solution Report.",
+    "ncc_clauses": ["E4D5", "E4D6", "E4D8"],
+    "standards": ["AS/NZS 2293.1 - 2018"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "mechanical_services",
+    "name": "Mechanical Services",
+    "description": "Certification that the air-conditioning and ventilation systems throughout the building comply with AS 1668.2 - 2012, AS/NZS 3666.1 - 2011 and the approved design.",
+    "ncc_clauses": [],
+    "standards": ["AS 1668.2 - 2012", "AS/NZS 3666.1 - 2011"],
+    "report_types": [],
+    "category": "Services"
+  },
+  {
+    "id": "stair_pressurisation",
+    "name": "Stair Pressurisation",
+    "description": "Certification that the automatic air pressurisation system for the fire isolated stair complies with AS 1668.1 - 2015.",
+    "ncc_clauses": [],
+    "standards": ["AS 1668.1 - 2015"],
+    "report_types": ["fire"],
+    "category": "Services"
+  },
+  {
+    "id": "zone_smoke_control",
+    "name": "Zone Smoke Control",
+    "description": "Certification that the Zone Smoke Control system complies with AS 1668.1 - 2015.",
+    "ncc_clauses": [],
+    "standards": ["AS 1668.1 - 2015"],
+    "report_types": ["fire"],
+    "category": "Services"
+  },
+  {
+    "id": "lighting_design",
+    "name": "Lighting Design",
+    "description": "Certification that the artificial lighting and power has been installed in accordance with the approved design.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Services"
+  },
+  {
+    "id": "fire_rated_penetrations",
+    "name": "Fire Rated Penetrations",
+    "description": "Certification AND a schedule of all fire rated penetrations for ALL service trades including Electrical, Fire, Hydraulic, Mechanical, Communications, etc. is required.",
+    "ncc_clauses": ["C4D15", "Specification 13"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_rated_penetrations_independent",
+    "name": "Fire Rated Penetrations Independent Certificate",
+    "description": "Certification from an independent suitably qualified professional is required for Fire Rated Penetrations.",
+    "ncc_clauses": ["C4D15", "Specification 13"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_rated_doorsets",
+    "name": "Certification for Fire Rated Doorsets",
+    "description": "Certification for Fire Rated Doorsets.",
+    "ncc_clauses": [],
+    "standards": ["AS 1905.1 - 2015"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_door_schedule",
+    "name": "Fire Door Schedule",
+    "description": "Fire door schedule is to be provided in accordance with AS 1905.1 - 2015 Appendix E.",
+    "ncc_clauses": [],
+    "standards": ["AS 1905.1 - 2015"],
+    "report_types": [],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "lightweight_fire_rating",
+    "name": "Lightweight Fire Rating",
+    "description": "Certification that the lightweight fire rating wall systems has been installed in accordance with the specified tested system (ceiling and floor systems if applicable). Certification is required to identify the specific system installed and its minimum FRL which it achieves.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "waterproofing_internal",
+    "name": "Waterproofing",
+    "description": "Certification for waterproofing to all wet areas, identifying the product used and stating compliance with AS 3740 - 2021.",
+    "ncc_clauses": [],
+    "standards": ["AS 3740 - 2021"],
+    "report_types": ["waterproofing"],
+    "category": "Construction"
+  },
+  {
+    "id": "waterproofing_external",
+    "name": "External Waterproofing",
+    "description": "Certification for waterproofing to all external areas, identifying the product used complies with AS/NZS 4654.1 - 2012 and the installation is in accordance with AS/NZS 4654.2 - 2012.",
+    "ncc_clauses": [],
+    "standards": ["AS/NZS 4654.1 - 2012", "AS/NZS 4654.2 - 2012"],
+    "report_types": ["waterproofing"],
+    "category": "Construction"
+  },
+  {
+    "id": "glazing",
+    "name": "Glazing",
+    "description": "Certification that all glazing complies with AS 1288 - 2021 where applicable. Certification must itemize the type of glazing and the applicable section of AS 1288 to which it complies.",
+    "ncc_clauses": [],
+    "standards": ["AS 1288 - 2021"],
+    "report_types": ["facade"],
+    "category": "Construction"
+  },
+  {
+    "id": "insulation",
+    "name": "Insulation",
+    "description": "Certification that thermal insulation has been fitted in accordance with the manufacturers recommendations and verifying the R-value.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "insulation_eer",
+    "name": "Insulation EER",
+    "description": "Certification from the builder / installer / supplier stating that External Glazing AND thermal insulation specified and installed complies with the approved Energy Rating Reports / Energy Efficiency Report.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "acoustics",
+    "name": "Acoustics",
+    "description": "Certification that the acoustic insulation separating residential units complies with Part F7 of the NCC and the acoustic consultant's advice. On-site testing is recommended to substantiate compliance.",
+    "ncc_clauses": ["F7"],
+    "standards": [],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "plumbing_acoustics",
+    "name": "Plumbing Acoustics",
+    "description": "Certification for acoustic insulation to plumbing pipes and other services is required to confirm compliance with Part F7 of the NCC.",
+    "ncc_clauses": ["F7"],
+    "standards": [],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "carpet_thickness",
+    "name": "Carpet Thickness",
+    "description": "Confirming carpet thickness complies with AS 1428 (thickness <11mm).",
+    "ncc_clauses": [],
+    "standards": ["AS 1428"],
+    "report_types": ["access"],
+    "category": "Construction"
+  },
+  {
+    "id": "fire_hazard_properties",
+    "name": "Fire Hazard Properties",
+    "description": "Certification from the suppliers that the fire hazard properties of materials, linings and surface finishes used (ie; Carpet, Vinyl, Etc), complies with Specification 7 of the NCC.",
+    "ncc_clauses": ["Specification 7"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "fire_test_reports",
+    "name": "Fire Test Reports",
+    "description": "Copies of the registered fire test reports are required to substantiate compliance for all materials, linings and surface finishes used. Ducting (AS/NZS 1530.3 & UL 181 Burning Test).",
+    "ncc_clauses": [],
+    "standards": ["AS/NZS 1530.3"],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "termite_protection",
+    "name": "Termite Protection",
+    "description": "Certification that the Termite Management system used complies with AS 3660.1 - 2014.",
+    "ncc_clauses": [],
+    "standards": ["AS 3660.1 - 2014"],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "slip_resistance",
+    "name": "Slip Resistance",
+    "description": "Slip resistance test reports confirming materials used for ramps, landings, stair comply with the requirements outlined in Table D3D15 of the NCC when tested in accordance with AS 4586 - 2013.",
+    "ncc_clauses": ["D3D15"],
+    "standards": ["AS 4586 - 2013"],
+    "report_types": ["access"],
+    "category": "Construction"
+  },
+  {
+    "id": "hearing_augmentation",
+    "name": "Hearing Augmentation",
+    "description": "Certification that the Hearing Augmentation system complies with Clause D4D8 of the NCC.",
+    "ncc_clauses": ["D4D8"],
+    "standards": [],
+    "report_types": ["access"],
+    "category": "Services"
+  },
+  {
+    "id": "structural_restraint",
+    "name": "Structural Restraint Certificate",
+    "description": "Certificate for Structural Restraints for Ceilings and Mechanical systems confirming Compliance with AS 1170.4 - 2007 and AS/NZS 2785 - 2020.",
+    "ncc_clauses": [],
+    "standards": ["AS 1170.4 - 2007", "AS/NZS 2785 - 2020"],
+    "report_types": [],
+    "category": "Structure"
+  },
+  {
+    "id": "dincel_installation",
+    "name": "Dincel Installation",
+    "description": "Certification that the Dincel walls have been installed in accordance with the Dincel Construction Manual and designed in accordance with AS 3600:2018. All penetrations through the Dincel Wall system have been treated in accordance with NCC Volume 1 2022 C4D15 and Specification 13.",
+    "ncc_clauses": ["C4D15", "Specification 13"],
+    "standards": ["AS 3600:2018"],
+    "report_types": ["fire"],
+    "category": "Construction"
+  },
+  {
+    "id": "flooring",
+    "name": "Flooring",
+    "description": "Certification that the floor coverings have been installed as per the manufacturer's specifications, and comply with NCC Volume 1 2022, C2D11, Specification 7 and the Fire Engineering Report.",
+    "ncc_clauses": ["C2D11", "Specification 7"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Construction"
+  },
+  {
+    "id": "sarking",
+    "name": "Sarking",
+    "description": "Certification that the sarking achieves the R-value as required by the approved Energy Efficiency Certificates and achieves compliance with NCC Volume One F3D3, AS 4200.1:2017, AS 4200.2:2017, and the Fire Engineering Report.",
+    "ncc_clauses": ["F3D3"],
+    "standards": ["AS 4200.1:2017", "AS 4200.2:2017"],
+    "report_types": ["fire"],
+    "category": "Construction"
+  },
+  {
+    "id": "roofing",
+    "name": "Roofing",
+    "description": "Certification that the roofing installation complies with NCC 2022 Volume One Clause F3D2, roof drainage per AS 3500.3:2021, sarking per F3D3, and the Fire Engineering Report.",
+    "ncc_clauses": ["F3D2", "F3D3"],
+    "standards": ["AS 3500.3:2021"],
+    "report_types": ["fire"],
+    "category": "Construction"
+  },
+  {
+    "id": "roof_ventilation",
+    "name": "Roof Ventilation",
+    "description": "Certification that in a climate zone 7, the roof is ventilated in accordance with NCC 2022 Volume 1 clause F8D5 and Table F8D5. Only applicable to SOU of Class 2 & 4. N/A to concrete roof, structural insulated panel roof or roof in a BAL FZ.",
+    "ncc_clauses": ["F8D5"],
+    "standards": [],
+    "report_types": [],
+    "category": "Construction"
+  },
+  {
+    "id": "internal_linings",
+    "name": "Internal Linings",
+    "description": "Certification that the wall and ceiling linings have been installed as per the manufacturer's specifications, and comply with NCC Volume 1 2022, C2D11, Specification 7 and the Fire Engineering Report.",
+    "ncc_clauses": ["C2D11", "Specification 7"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Construction"
+  },
+  {
+    "id": "fire_resisting_construction",
+    "name": "Fire Resisting Construction",
+    "description": "Certification that the construction achieves all required fire-resistant construction in accordance with NCC Volume 1 2022, C2D10 and the Fire Engineering Report.",
+    "ncc_clauses": ["C2D10"],
+    "standards": [],
+    "report_types": ["fire"],
+    "category": "Fire Safety"
+  },
+  {
+    "id": "performance_solutions",
+    "name": "Performance Solutions",
+    "description": "Any amended or updated performance solutions for Access, Fire, Section J, Mechanical, Waterproofing, Weepholes.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "tccs_operational_acceptance",
+    "name": "TCCS Operational Acceptance",
+    "description": "Requirement of N.O.D.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "access_consultant_signoff",
+    "name": "Access Consultant Sign Off",
+    "description": "Access Consultant Sign Off.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": [],
+    "category": "Administrative"
+  },
+  {
+    "id": "weatherproofing_facade",
+    "name": "Weatherproofing - Facade Engineer Sign Off",
+    "description": "Weatherproofing - Facade Engineer Sign Off.",
+    "ncc_clauses": [],
+    "standards": [],
+    "report_types": ["facade"],
+    "category": "Construction"
+  },
+  {
+    "id": "balustrades",
+    "name": "Balustrade Shop Drawings, Design Certificate and Installation Certificate",
+    "description": "Balustrades comply with NCC 2022 Volume 1, Section B, Clauses D3D17 to D3D20 (and D3D21 if applicable) and the following Australian Standards: AS 1170.0 - 2002, AS 1170.1 - 2002, AS 1170.2 - 2021, AS 1170.4 - 2007, AS/NZS 2208 - 1996, AS 1288 - 2021, AS 2047 - 2014.",
+    "ncc_clauses": ["D3D17", "D3D18", "D3D19", "D3D20", "D3D21"],
+    "standards": ["AS 1170.0 - 2002", "AS 1170.1 - 2002", "AS 1170.2 - 2021", "AS 1170.4 - 2007", "AS/NZS 2208 - 1996", "AS 1288 - 2021", "AS 2047 - 2014"],
+    "report_types": ["access"],
+    "category": "Construction"
+  }
+]
