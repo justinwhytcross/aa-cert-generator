@@ -49,8 +49,8 @@ with tab1:
     with col2:
         st.markdown("#### 2. Upload Performance Solution Reports")
         psol_files = st.file_uploader(
-            "Upload Performance Solution PDFs (FER, Access, Facade, etc.)",
-            type=["pdf"],
+            "Upload Performance Solution Reports (FER, Access, Facade, etc.)",
+            type=["pdf", "docx"],
             accept_multiple_files=True,
             key="psol_upload",
         )
@@ -177,6 +177,8 @@ with tab1:
                     "address": st.session_state.get("address", project_info.get("address", "")),
                     "date": project_info.get("date", ""),
                     "description": project_info.get("description", ""),
+                    "ncc_year": project_info.get("ncc_year", "2022"),
+                    "ncc_amendment": project_info.get("ncc_amendment", ""),
                 }
 
                 with st.spinner("Generating certificate templates..."):
@@ -262,8 +264,8 @@ with tab2:
 
             # Upload certificates
             cert_files = st.file_uploader(
-                "Upload returned certificate PDFs",
-                type=["pdf"],
+                "Upload returned certificates",
+                type=["pdf", "docx"],
                 accept_multiple_files=True,
                 key="cert_upload",
             )

@@ -32,26 +32,30 @@ def extract_psols_from_pdf(pdf_path: str) -> dict:
     first_pages = all_text[:5000]
 
     # Report reference - try multiple patterns
-    # Pattern 1: "Document reference\nACT22080 FER Rev E"
-    ref_match = re.search(r'Document reference\s*\n?\s*(.+?)(?:\n|$)', first_pages)
+    # Pattern 1: "Document reference\nACT22080 FER Rev E" (may span lines)
+    ref_match = re.search(r'Document\s*\n?\s*reference\s*\n\s*(.+?)(?:\n|$)', first_pages)
     if ref_match:
         metadata["reference"] = ref_match.group(1).strip()
     else:
-        # Pattern 2: "Document Issue\n2" + "Project Number\n20240243" -> build reference
-        issue_match = re.search(r'Document Issue\s*\n\s*(\S+)', first_pages)
-        proj_match = re.search(r'Project Number\s*\n\s*(\S+)', first_pages)
-        if issue_match or proj_match:
-            parts = []
-            if proj_match:
-                parts.append(proj_match.group(1).strip())
-            # Look for report type in title (e.g., "Fire Engineering\nReport")
-            type_match = re.search(r'(Fire Engineering)\s*\n?\s*Report', first_pages)
-            if type_match:
-                parts.append("FER")
-            if issue_match:
-                parts.append(f"V{issue_match.group(1).strip()}")
-            if parts:
-                metadata["reference"] = " ".join(parts)
+        # Pattern 2: "ACT25036 FER Rev B | 19 March 2026" on title page
+        ref_match = re.search(r'([A-Z]{2,}\d+\s+FER\s+Rev\s+[A-Z0-9]+)', first_pages)
+        if ref_match:
+            metadata["reference"] = ref_match.group(1).strip()
+        else:
+            # Pattern 3: "Document Issue\n2" + "Project Number\n20240243" -> build reference
+            issue_match = re.search(r'Document Issue\s*\n\s*(\S+)', first_pages)
+            proj_match = re.search(r'Project Number\s*\n\s*(\S+)', first_pages)
+            if issue_match or proj_match:
+                parts = []
+                if proj_match:
+                    parts.append(proj_match.group(1).strip())
+                type_match = re.search(r'(Fire Engineering)\s*\n?\s*Report', first_pages)
+                if type_match:
+                    parts.append("FER")
+                if issue_match:
+                    parts.append(f"V{issue_match.group(1).strip()}")
+                if parts:
+                    metadata["reference"] = " ".join(parts)
 
     # Company name - try multiple patterns
     # Pattern 1: "Pty Ltd" in name

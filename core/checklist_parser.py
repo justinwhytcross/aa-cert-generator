@@ -60,6 +60,15 @@ def _extract_project_info(doc: Document) -> dict:
     if re_match:
         info["building"] = re_match.group(1).strip()
 
+    # Extract NCC year and amendment from checklist header
+    # e.g., "NCC2022" or "NCC2022 (1)" where (1) = Amendment 1
+    ncc_match = re.search(r'NCC\s*(\d{4})\s*(?:\((\d+)\))?', full_text)
+    if ncc_match:
+        ncc_year = ncc_match.group(1)
+        amendment = ncc_match.group(2) if ncc_match.group(2) else ""
+        info["ncc_year"] = ncc_year
+        info["ncc_amendment"] = amendment
+
     # Extract description of work
     desc_match = re.search(r'Description of work\s*[:\.]?\s*(.+?)(?:\n|$)', full_text)
     if desc_match:

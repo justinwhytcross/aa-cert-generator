@@ -1,6 +1,7 @@
 """Generate certificate Word templates for each checklist item."""
 
 import os
+import re
 import json
 import zipfile
 import io
@@ -103,6 +104,34 @@ def _is_admin_item(item: dict) -> bool:
     return name in skip_names
 
 
+def _clean_address(project_info: dict) -> str:
+    """Build a clean address field - just territory and building address.
+    Strips out 'RE: Commercial Certificate Checklist...' text.
+    """
+    raw_address = project_info.get("address", "")
+    building = project_info.get("building", "")
+
+    # Strip out "RE: Commercial Certificate Checklist..." line
+    lines = raw_address.split("\n")
+    clean_lines = []
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+        # Skip lines containing "RE:" or "Commercial Certificate Checklist"
+        if re.match(r'^RE:\s', line, re.IGNORECASE):
+            continue
+        if "certificate checklist" in line.lower():
+            continue
+        clean_lines.append(line)
+
+    if clean_lines:
+        return "\n".join(clean_lines)
+
+    # Fallback: just use building address
+    return building
+
+
 def _make_filename(item: dict, project_info: dict) -> str:
     """Generate filename for a certificate template."""
     name = item.get("name", item.get("id", "Certificate"))
@@ -164,7 +193,7 @@ def _build_template(item: dict, matched_psols: list, project_info: dict, uploade
 
     # --- PROJECT INFO TABLE ---
     project_name = project_info.get("building", project_info.get("description", ""))
-    address = project_info.get("address", "")
+    address = _clean_address(project_info)
     building_desc = project_info.get("building", "")
 
     table = doc.add_table(rows=3, cols=2)
@@ -325,11 +354,16 @@ def _build_standards_text(item: dict, matched_psols: list, project_info: dict, i
     lines = []
     item_report_details = item_report_details or []
 
-    # NCC clauses
+    # NCC clauses - use year/amendment from project info if available
     ncc_clauses = item.get("ncc_clauses", [])
     if ncc_clauses:
+        ncc_year = project_info.get("ncc_year", "2022")
+        ncc_amendment = project_info.get("ncc_amendment", "")
+        ncc_label = f"NCC {ncc_year}"
+        if ncc_amendment:
+            ncc_label += f" Amendment {ncc_amendment}"
         clause_str = ", ".join(ncc_clauses)
-        lines.append(f"NCC 2022 Volume 1, {clause_str}")
+        lines.append(f"{ncc_label} Volume 1, {clause_str}")
 
     # Australian Standards
     standards = item.get("standards", [])
