@@ -105,31 +105,28 @@ def _is_admin_item(item: dict) -> bool:
 
 
 def _clean_address(project_info: dict) -> str:
-    """Build a clean address field - just territory and building address.
-    Strips out 'RE: Commercial Certificate Checklist...' text.
+    """Build a clean address field - just state/territory.
+
+    The Address row on the template should show the territory only (e.g. "ACT").
+    The applicant's postal address (GPO BOX etc.) must NOT appear here.
+    The site address is already in Project Name and Building to be certified rows.
     """
-    raw_address = project_info.get("address", "")
     building = project_info.get("building", "")
 
-    # Strip out "RE: Commercial Certificate Checklist..." line
-    lines = raw_address.split("\n")
-    clean_lines = []
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-        # Skip lines containing "RE:" or "Commercial Certificate Checklist"
-        if re.match(r'^RE:\s', line, re.IGNORECASE):
-            continue
-        if "certificate checklist" in line.lower():
-            continue
-        clean_lines.append(line)
+    # Extract state/territory from the building address
+    territories = ["ACT", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"]
+    for territory in territories:
+        if re.search(rf'\b{territory}\b', building.upper()):
+            return territory
 
-    if clean_lines:
-        return "\n".join(clean_lines)
+    # Fallback: scan raw address but strip postal boxes and RE lines
+    raw_address = project_info.get("address", "")
+    for territory in territories:
+        if re.search(rf'\b{territory}\b', raw_address.upper()):
+            return territory
 
-    # Fallback: just use building address
-    return building
+    # Last resort - default to ACT (AA is Canberra-based)
+    return "ACT"
 
 
 def _make_filename(item: dict, project_info: dict) -> str:
