@@ -18,6 +18,83 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 PROJECTS_DIR = os.path.join(os.path.dirname(__file__), "projects")
 
 
+# Status values that mean "skip this item - no template needed"
+SKIP_STATUSES = {"n/a", "na", "complete", "completed", "done", "approved"}
+
+# Keywords in Status column that indicate which report type applies
+STATUS_REPORT_TYPES = {
+    "fire": "fire",
+    "access": "access",
+    "waterproofing": "waterproofing",
+    "waterproof": "waterproofing",
+    "facade": "facade",
+    "façade": "facade",
+    "energy": "section_j",
+    "energy rating": "section_j",
+    "section j": "section_j",
+    "acoustic": "acoustic",
+    "mechanical": "mechanical",
+    "mechancial": "mechanical",
+    "bushfire": "bushfire",
+}
+
+
+def _filter_and_enrich_items(master_items: list, parsed_checklist: list) -> list:
+    """Filter master items by checklist status and enrich with report types from status column.
+
+    - Skip items where status is 'n/a', 'complete', etc.
+    - Merge report types from status column (Fire, Access, Waterproofing, etc.)
+      into the item's report_types list.
+    - Match master items to parsed checklist by name (fuzzy).
+    """
+    import re
+
+    def normalize(s):
+        return re.sub(r'[^a-z0-9]', '', s.lower())
+
+    # Build lookup of parsed items by normalized name
+    parsed_lookup = {}
+    for p in parsed_checklist:
+        name = p.get("name", "").strip()
+        if not name:
+            continue
+        parsed_lookup[normalize(name)] = p
+
+    result = []
+    for item in master_items:
+        item_name_norm = normalize(item.get("name", ""))
+        parsed = parsed_lookup.get(item_name_norm)
+
+        # Try fuzzy match on first 20 chars if exact doesn't hit
+        if not parsed:
+            for key, val in parsed_lookup.items():
+                if key and item_name_norm and (key.startswith(item_name_norm[:15]) or item_name_norm.startswith(key[:15])):
+                    parsed = val
+                    break
+
+        if parsed:
+            status = parsed.get("status", "").strip().lower()
+            # Skip items marked complete/na
+            if status in SKIP_STATUSES:
+                continue
+
+            # Extract report types from status column
+            extra_types = set()
+            for keyword, rtype in STATUS_REPORT_TYPES.items():
+                if keyword in status:
+                    extra_types.add(rtype)
+
+            # Merge with existing report_types
+            existing = set(item.get("report_types", []))
+            item = dict(item)  # Don't mutate original
+            item["report_types"] = list(existing | extra_types)
+            item["status"] = parsed.get("status", "")
+
+        result.append(item)
+
+    return result
+
+
 st.set_page_config(
     page_title="Absolute Approvals - Certificate Tools",
     page_icon="AA",
@@ -81,7 +158,12 @@ with tab1:
 
             # Load master items for PSOL matching and template generation
             with open(os.path.join(DATA_DIR, "checklist_items.json"), "r") as f:
-                master_items = json.load(f)
+                master_items_all = json.load(f)
+
+            # Merge parsed checklist status into master_items and filter by outstanding
+            master_items = _filter_and_enrich_items(master_items_all, checklist_items_parsed)
+
+            st.markdown(f"**Items requiring certificates:** {len(master_items)}")
 
             # Process PSOL PDFs
             all_psols = []
@@ -90,7 +172,8 @@ with tab1:
                 psol_temp_paths = []
                 psol_original_names = []
                 for pf in psol_files:
-                    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+                    ext = ".docx" if pf.name.lower().endswith(".docx") else ".pdf"
+                    with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
                         tmp.write(pf.read())
                         psol_temp_paths.append(tmp.name)
                         psol_original_names.append(pf.name)
@@ -274,7 +357,8 @@ with tab2:
                 cert_temp_paths = []
                 cert_original_names = []
                 for cf in cert_files:
-                    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+                    ext = ".docx" if cf.name.lower().endswith(".docx") else ".pdf"
+                    with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
                         tmp.write(cf.read())
                         cert_temp_paths.append(tmp.name)
                         cert_original_names.append(cf.name)

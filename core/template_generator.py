@@ -105,28 +105,29 @@ def _is_admin_item(item: dict) -> bool:
 
 
 def _clean_address(project_info: dict) -> str:
-    """Build a clean address field - just state/territory.
+    """Build the site address for the certificate Address field.
 
-    The Address row on the template should show the territory only (e.g. "ACT").
-    The applicant's postal address (GPO BOX etc.) must NOT appear here.
-    The site address is already in Project Name and Building to be certified rows.
+    Shows the site address (from Building field) with territory appended if missing.
+    MUST NOT show the applicant's postal address (GPO BOX etc.).
     """
-    building = project_info.get("building", "")
-
-    # Extract state/territory from the building address
+    building = project_info.get("building", "").strip()
     territories = ["ACT", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"]
+
+    if not building:
+        return "ACT"
+
+    # If building already contains a territory, use it as-is
     for territory in territories:
         if re.search(rf'\b{territory}\b', building.upper()):
-            return territory
+            return building
 
-    # Fallback: scan raw address but strip postal boxes and RE lines
+    # Otherwise append territory - try to find from raw address, default to ACT
     raw_address = project_info.get("address", "")
     for territory in territories:
         if re.search(rf'\b{territory}\b', raw_address.upper()):
-            return territory
+            return f"{building}, {territory}"
 
-    # Last resort - default to ACT (AA is Canberra-based)
-    return "ACT"
+    return f"{building}, ACT"
 
 
 def _make_filename(item: dict, project_info: dict) -> str:
@@ -373,7 +374,9 @@ def _build_standards_text(item: dict, matched_psols: list, project_info: dict, i
         lines.append(f"and the approved {detail}")
         # Track the raw reference to avoid duplicating from PSOLs
         for word in ["Fire Engineering Report", "Access Solutions Report",
-                      "Facade Engineer Report", "Waterproofing Report"]:
+                      "Facade Engineer Report", "Waterproofing Performance Solution Report",
+                      "Section J Energy Efficiency Report", "Acoustic Consultant's Report",
+                      "Mechanical Services Report", "Bushfire Assessment Report"]:
             detail_ref = detail.replace(word, "").strip()
             if detail_ref:
                 seen_report_refs.add(detail_ref)
@@ -414,7 +417,11 @@ def _get_item_report_details(item: dict, uploaded_reports: dict) -> list:
         "fire": "Fire Engineering Report",
         "access": "Access Solutions Report",
         "facade": "Facade Engineer Report",
-        "waterproofing": "Waterproofing Report",
+        "waterproofing": "Waterproofing Performance Solution Report",
+        "section_j": "Section J Energy Efficiency Report",
+        "acoustic": "Acoustic Consultant's Report",
+        "mechanical": "Mechanical Services Report",
+        "bushfire": "Bushfire Assessment Report",
     }
 
     for rtype in report_types:

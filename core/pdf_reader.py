@@ -1,11 +1,24 @@
-"""Extract text from PDF files using PyMuPDF."""
+"""Extract text from PDF and DOCX files."""
 
 import fitz  # PyMuPDF
 
 
-def extract_text(pdf_path: str) -> str:
-    """Extract all text from a PDF file."""
-    doc = fitz.open(pdf_path)
+def extract_text(file_path: str) -> str:
+    """Extract all text from a PDF or DOCX file."""
+    if file_path.lower().endswith(".docx"):
+        try:
+            from docx import Document as DocxDocument
+            doc = DocxDocument(file_path)
+            parts = [p.text for p in doc.paragraphs]
+            for table in doc.tables:
+                for row in table.rows:
+                    for cell in row.cells:
+                        parts.append(cell.text)
+            return "\n".join(parts)
+        except Exception:
+            return ""
+
+    doc = fitz.open(file_path)
     text_parts = []
     for page in doc:
         text_parts.append(page.get_text())

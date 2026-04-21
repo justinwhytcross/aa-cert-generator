@@ -194,7 +194,7 @@
     "description": "Certification that the air-conditioning and ventilation systems throughout the building comply with AS 1668.2 - 2012, AS/NZS 3666.1 - 2011 and the approved design.",
     "ncc_clauses": [],
     "standards": ["AS 1668.2 - 2012", "AS/NZS 3666.1 - 2011"],
-    "report_types": [],
+    "report_types": ["mechanical"],
     "category": "Services"
   },
   {
@@ -221,7 +221,7 @@
     "description": "Certification that the artificial lighting and power has been installed in accordance with the approved design.",
     "ncc_clauses": [],
     "standards": [],
-    "report_types": [],
+    "report_types": ["section_j"],
     "category": "Services"
   },
   {
@@ -302,7 +302,7 @@
     "description": "Certification that thermal insulation has been fitted in accordance with the manufacturers recommendations and verifying the R-value.",
     "ncc_clauses": [],
     "standards": [],
-    "report_types": [],
+    "report_types": ["section_j"],
     "category": "Construction"
   },
   {
@@ -311,7 +311,7 @@
     "description": "Certification from the builder / installer / supplier stating that External Glazing AND thermal insulation specified and installed complies with the approved Energy Rating Reports / Energy Efficiency Report.",
     "ncc_clauses": [],
     "standards": [],
-    "report_types": [],
+    "report_types": ["section_j"],
     "category": "Construction"
   },
   {
@@ -320,7 +320,7 @@
     "description": "Certification that the acoustic insulation separating residential units complies with Part F7 of the NCC and the acoustic consultant's advice. On-site testing is recommended to substantiate compliance.",
     "ncc_clauses": ["F7"],
     "standards": [],
-    "report_types": [],
+    "report_types": ["acoustic"],
     "category": "Construction"
   },
   {
@@ -329,7 +329,7 @@
     "description": "Certification for acoustic insulation to plumbing pipes and other services is required to confirm compliance with Part F7 of the NCC.",
     "ncc_clauses": ["F7"],
     "standards": [],
-    "report_types": [],
+    "report_types": ["acoustic"],
     "category": "Construction"
   },
   {

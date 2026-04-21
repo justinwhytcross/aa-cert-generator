@@ -89,33 +89,37 @@ def _extract_project_info(doc: Document) -> dict:
 
 
 def _extract_checklist_items(doc: Document) -> list:
-    """Extract checklist items from the main table."""
+    """Extract checklist items from all matching tables (handles tables split across pages)."""
     items = []
+    seen_names = set()  # Dedupe by item name
 
     for table in doc.tables:
         rows = table.rows
-        if len(rows) < 3:
+        if len(rows) < 2:
             continue
 
-        # Check if this is the checklist table (look for header row with #, Item, etc.)
-        header_text = " ".join(cell.text.strip() for cell in rows[0].cells)
-        if "#" not in header_text and "Item" not in header_text:
-            # Try second row (first might be a section header)
-            if len(rows) > 1:
-                header_text = " ".join(cell.text.strip() for cell in rows[1].cells)
-            if "#" not in header_text and "Item" not in header_text:
-                continue
-
-        # Find header row index
-        header_idx = 0
-        for i, row in enumerate(rows):
+        # Determine if this is a checklist table
+        header_row = None
+        for i, row in enumerate(rows[:3]):  # Check first 3 rows
             cells_text = [cell.text.strip() for cell in row.cells]
-            if "#" in cells_text or "Item" in cells_text:
-                header_idx = i
+            if ("#" in cells_text or "Item" in cells_text) and len(row.cells) >= 3:
+                header_row = i
                 break
 
+        # Also accept tables that continue the checklist (no header but 4 cols and numeric first cell)
+        is_continuation = False
+        if header_row is None and len(rows) > 0 and len(rows[0].cells) >= 4:
+            first_cell = rows[0].cells[0].text.strip()
+            if first_cell.isdigit() or first_cell.rstrip(".").isdigit():
+                is_continuation = True
+
+        if header_row is None and not is_continuation:
+            continue
+
+        start_row = (header_row + 1) if header_row is not None else 0
+
         # Parse data rows
-        for row in rows[header_idx + 1:]:
+        for row in rows[start_row:]:
             cells = row.cells
             if len(cells) < 3:
                 continue
@@ -143,6 +147,12 @@ def _extract_checklist_items(doc: Document) -> list:
 
             # Extract AS standards from requirement text
             standards = extract_standards(requirement)
+
+            # Dedupe: if item name already seen, skip
+            name_key = name.lower().strip()
+            if name_key in seen_names:
+                continue
+            seen_names.add(name_key)
 
             items.append({
                 "number": number,
